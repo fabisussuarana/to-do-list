@@ -1,14 +1,28 @@
 <?php
-$servername = $_ENV['DB_HOST'];
-$username = $_ENV['DB_USER'];
-$password = $_ENV['DB_PASS'];
-$dbname = $_ENV['DB_NAME'];
-$port = $_ENV['DB_PORT'];
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "todo_list";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
   die("Falha na conexão: " . $conn->connect_error);
+}
+
+
+// Adicionar uma nova tarefa
+if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['titulo']) && isset($_POST['descricao']) && isset($_POST['status'])) {
+  $titulo = $_POST['titulo'];
+  $descricao = $_POST['descricao'];
+  $status = $_POST['status'];
+
+  $sql = "INSERT INTO tasks (title, description, status) VALUES ('$titulo', '$descricao', '$status')";
+  $conn->query($sql);
+
+
+  header("Location: todoList.php");
+  exit();
 }
 ?>
 
@@ -30,16 +44,16 @@ if ($conn->connect_error) {
       <div class="card-body bg-dark text-white rounded p-4">
         <h3 class="text-center mb-4">Lista de Atividades</h3>
 
-        <form class="mb-3">
-          <input required type="text" class="form-control mb-2" id="titulo" placeholder="Título">
-          <input required type="text" class="form-control mb-2" id="descricao" placeholder="Descrição">
-          <select class="form-select mb-2" id="status">
+        <form class="mb-3" method="POST">
+          <input required type="text" class="form-control mb-2" id="titulo" name="titulo" placeholder="Título">
+          <input required type="text" class="form-control mb-2" id="descricao" name="descricao" placeholder="Descrição">
+          <select class="form-select mb-2" id="status" name="status">
             <option value="pendente">Pendente</option>
             <option value="em_progresso">Em progresso</option>
             <option value="completado">Completado</option>
           </select>
           <div class="text-end">
-            <button class="btn btn-outline-light rounded-circle">
+            <button type="submit" class="btn btn-outline-light rounded-circle">
               <i class="bi bi-plus-lg"></i>
             </button>
           </div>

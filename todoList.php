@@ -10,6 +10,10 @@ if ($conn->connect_error) {
   die("Falha na conexão: " . $conn->connect_error);
 }
 
+// Renderizar todas as tarefas
+$sql = "SELECT * FROM tasks";
+$todasTarefas = $conn->query($sql);
+
 
 // Adicionar uma nova tarefa
 if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['titulo']) && isset($_POST['descricao']) && isset($_POST['status'])) {
@@ -24,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['titulo']) && isset($_P
   header("Location: todoList.php");
   exit();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -60,68 +65,33 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['titulo']) && isset($_P
         </form>
 
         <ul class="list-group list-group-flush px-4 d-flex gap-4" id="listaTarefas">
-          <li class="list-group-item d-flex justify-content-between align-items-center w-100 border-0 rounded-bottom shadow-sm">
-            Atividade 1
+          <?php while ($row = $todasTarefas->fetch_assoc()) : ?>
+            <li class="list-group-item d-flex justify-content-between align-items-center w-100 border-0 rounded-bottom shadow-sm">
+              <?= $row['title'] ?>
+              <?= $row['description'] ?>
 
-            <div class="d-flex gap-2">
-              <button class="btn btn-outline-danger btn-sm d-flex justify-content-between align-items-center">
-                <i class="bi bi-trash"></i>
-              </button>
+              <div class="d-flex gap-2">
+                <button class="btn btn-outline-danger btn-sm d-flex justify-content-between align-items-center">
+                  <i class="bi bi-trash"></i>
+                </button>
 
-              <button class="btn btn-outline-success btn-sm d-flex justify-content-between align-items-center">
-                <i class="bi bi-check"></i>
-              </button>
-
-
-              <button class="btn btn-outline-warning btn-sm d-flex justify-content-between align-items-center">
-                <i class="bi bi-pencil"></i>
-              </button>
-
-              <span class="badge bg-secondary d-flex justify-content-center align-items-center" style="width: 100px">Pendente</span>
-            </div>
-          </li>
-
-          <li class="list-group-item d-flex justify-content-between align-items-center w-100 border-0 rounded-bottom shadow-sm">
-            Atividade 2
-
-            <div class="d-flex gap-2">
-              <button class="btn btn-outline-danger btn-sm d-flex justify-content-between align-items-center">
-                <i class="bi bi-trash"></i>
-              </button>
-
-              <button class="btn btn-outline-success btn-sm d-flex justify-content-between align-items-center">
-                <i class="bi bi-check"></i>
-              </button>
+                <button class="btn btn-outline-success btn-sm d-flex justify-content-between align-items-center">
+                  <i class="bi bi-check"></i>
+                </button>
 
 
-              <button class="btn btn-outline-warning btn-sm d-flex justify-content-between align-items-center">
-                <i class="bi bi-pencil"></i>
-              </button>
+                <button class="btn btn-outline-warning btn-sm d-flex justify-content-between align-items-center">
+                  <i class="bi bi-pencil"></i>
+                </button>
 
-              <span class="badge bg-primary d-flex justify-content-center align-items-center" style="width: 100px">Em andamento</span>
-            </div>
-          </li>
+                <span class="badge bg-secondary d-flex justify-content-center align-items-center" style="width: 100px">
+                  <?= $row['status'] == 'pendente' ? 'Pendente' : ($row['status'] == 'em_progresso' ? 'Em andamento' : 'Concluido') ?>
+                </span>
+              </div>
 
-          <li class="list-group-item d-flex justify-content-between align-items-center w-100 border-0 rounded-bottom shadow-sm">
-            Atividade 3
+            </li>
 
-            <div class="d-flex gap-2">
-              <button class="btn btn-outline-danger btn-sm d-flex justify-content-between align-items-center">
-                <i class="bi bi-trash"></i>
-              </button>
-
-              <button class="btn btn-outline-success btn-sm d-flex justify-content-between align-items-center">
-                <i class="bi bi-check"></i>
-              </button>
-
-
-              <button class="btn btn-outline-warning btn-sm d-flex justify-content-between align-items-center">
-                <i class="bi bi-pencil"></i>
-              </button>
-
-              <span class="badge bg-success d-flex justify-content-center align-items-center" style="width: 100px">Concluido</span>
-            </div>
-          </li>
+          <?php endwhile; ?>
         </ul>
       </div>
     </div>

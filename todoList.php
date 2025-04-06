@@ -29,6 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['titulo']) && isset($_P
   exit();
 }
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -71,20 +73,38 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['titulo']) && isset($_P
               <?= $row['description'] ?>
 
               <div class="d-flex gap-2">
-                <button class="btn btn-outline-danger btn-sm d-flex justify-content-between align-items-center">
-                  <i class="bi bi-trash"></i>
-                </button>
-
-                <button class="btn btn-outline-success btn-sm d-flex justify-content-between align-items-center">
-                  <i class="bi bi-check"></i>
-                </button>
 
 
-                <button class="btn btn-outline-warning btn-sm d-flex justify-content-between align-items-center">
-                  <i class="bi bi-pencil"></i>
-                </button>
+                <!-- Formulário para deletar -->
+                <form method="POST" action="deleteTask.php" class="d-inline">
+                  <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                  <button type="submit" class="btn btn-outline-danger btn-sm">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </form>
 
-                <span class="badge bg-secondary d-flex justify-content-center align-items-center" style="width: 100px">
+                <!-- Formulário para marcar como concluído -->
+                <form method="POST" action="completeTask.php" class="d-inline">
+                  <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                  <button type="submit" class="btn btn-outline-success btn-sm">
+                    <i class="bi bi-check"></i>
+                  </button>
+                </form>
+
+
+
+                <!-- Formulário para editar -->
+                <form method="POST" class="d-inline">
+                  <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                  <button class="btn btn-outline-warning btn-sm d-flex justify-content-between align-items-center">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                </form>
+
+
+
+                <span class="badge d-flex justify-content-center align-items-center"
+                  style="width: 100px; background-color: <?= $row['status'] == 'pendente' ? '#ffc107' : ($row['status'] == 'em_progresso' ? '#0dcaf0' : '#198754') ?>;">
                   <?= $row['status'] == 'pendente' ? 'Pendente' : ($row['status'] == 'em_progresso' ? 'Em andamento' : 'Concluido') ?>
                 </span>
               </div>

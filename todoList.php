@@ -66,6 +66,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['titulo']) && isset($_P
           </div>
         </form>
 
+        <?php if ($todasTarefas->num_rows == 0) : ?>
+          <div class="alert alert-info text-center" role="alert">
+            Nenhuma tarefa encontrada.
+          </div>
+        <?php endif; ?>
+
         <ul class="list-group list-group-flush px-4 d-flex gap-4" id="listaTarefas">
           <?php while ($row = $todasTarefas->fetch_assoc()) : ?>
             <li class="list-group-item d-flex justify-content-between align-items-center w-100 border-0 rounded-bottom shadow-sm">

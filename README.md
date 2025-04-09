@@ -31,9 +31,6 @@ Bootstrap Icons – biblioteca de ícones para enriquecer a interface.
 
 - Estrutura de Diretórios
 <pre>
-graphql
-Copiar
-Editar
 TO_DO_LIST_MAIN
 ├── assets/
 │   └── style.css                  # Arquivo de estilo customizado
@@ -83,10 +80,6 @@ nome_do_banco: o nome do banco de dados criado no passo anterior
 Copie todos os arquivos do projeto para o diretório raiz do seu servidor local:
 
 Em servidores como o XAMPP, esse diretório costuma ser: C:/xampp/htdocs/
-
-Em WAMP: C:/wamp/www/
-
-Em Laragon: C:/laragon/www/
 
 -Acesse a aplicação via navegador
 Com o servidor ativo (Apache/MySQL), abra o navegador e acesse a URL correspondente:

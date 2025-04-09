@@ -43,7 +43,7 @@ TO_DO_LIST_MAIN
 │   ├── insertTask.php             # Script para inserção de nova tarefa
 │   ├── deleteTask.php             # Script para exclusão de tarefa
 │   ├── completeTask.php           # Script para marcar tarefa como concluída
-|    ├── todoList.php       
+├── todoList.php       
 </pre>
 🔧 Requisitos
 Para executar o projeto localmente, é necessário ter os seguintes componentes instalados:

@@ -94,7 +94,7 @@ $todasTarefas = $conn->query($sql);
                 <div class="text-end mt-2">
                   <button type="submit" class="btn btn-primary">
                     <span>Pesquisar</span>
-                    <i class="bi bi-primary"></i>
+                    <i class="bi bi-search"></i>
                   </button>
                 </div>
               </form>

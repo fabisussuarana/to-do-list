@@ -140,12 +140,29 @@
                       </button>
                     </form>
                     <!-- Formulário para editar -->
-                    <form method="POST" class="d-inline">
-                      <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                      <button class="btn btn-warning btn-sm d-flex justify-content-between align-items-center">
+                    <form method="POST" action="metodos/editTask.php" class="d-inline">
+                        <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                        <button class="btn btn-warning btn-sm d-flex justify-content-between align-items-center">
                         <i class="bi bi-pencil text-light"></i>
-                      </button>
+                        </button>
                     </form>
+                    <form method="POST" action="./updateTask.php" class="d-none">
+  <input type="hidden" name="id" value="<?= $row['id'] ?>">
+  <input type="text" name="titulo" value="<?= $row['title'] ?>">
+  <input type="text" name="descricao" value="<?= $row['description'] ?>">
+  <select name="status">
+    <option value="pendente" <?= $row['status'] == 'pendente' ? 'selected' : '' ?>>Pendente</option>
+    <option value="em_andamento" <?= $row['status'] == 'em_andamento' ? 'selected' : '' ?>>Em andamento</option>
+    <option value="concluido" <?= $row['status'] == 'concluido' ? 'selected' : '' ?>>Concluído</option>
+  </select>
+  <button type="submit" class="btn btn-primary btn-sm">
+    Salvar Alterações
+  </button>
+</form>
+
+
+              
+
                     <!-- Formulário para deletar -->
                     <form method="POST" action="./metodos/deleteTask.php" class="d-inline">
                       <input type="hidden" name="id" value="<?= $row['id'] ?>">

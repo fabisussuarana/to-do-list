@@ -1,87 +1,81 @@
 # to-do-list
-Projeto to do list feito para o trabalho da matéria de desenvolvimento web
-Este projeto consiste em uma aplicação web para gerenciamento de atividades, desenvolvida com foco em simplicidade, usabilidade e clareza visual. A aplicação permite aos usuários adicionar, visualizar, filtrar, atualizar e excluir tarefas, categorizando-as por status (pendente, em andamento e concluído).
+📌 Descrição do Projeto
+Este projeto consiste em uma aplicação web de lista de tarefas (To-Do List), desenvolvida em grupo como atividade acadêmica. O objetivo principal é praticar conceitos de desenvolvimento web utilizando HTML, CSS com Bootstrap, PHP e MySQL. A aplicação permite ao usuário adicionar, editar, remover e marcar tarefas como concluídas, com uma interface intuitiva e responsiva.
 
-- Objetivo
-O objetivo do projeto é proporcionar uma ferramenta prática e intuitiva para organização de tarefas diárias. O sistema foi desenvolvido utilizando PHP para a lógica de backend, MySQL para persistência dos dados e Bootstrap 5 para o design responsivo e moderno.
+🛠 Tecnologias Utilizadas
+HTML – Estrutura da página
 
-- Funcionalidades
-Cadastro de tarefas: o usuário pode inserir título, descrição e status da tarefa.
+CSS / Bootstrap – Estilização e responsividade
 
-Listagem de tarefas: todas as tarefas cadastradas são exibidas em lista, com destaque visual conforme o status.
+PHP – Lógica de backend
 
-Filtro de tarefas: é possível buscar tarefas por palavra-chave ou por status.
+MySQL – Banco de dados relacional
 
-Alteração de status: permite marcar tarefas como concluídas.
+Git / GitHub – Versionamento e colaboração
 
-Exclusão de tarefas: o usuário pode remover tarefas individualmente.
+⚙ Funcionalidades
+Adicionar novas tarefas
 
-Interface amigável e responsiva: layout otimizado para diferentes tamanhos de tela.
+Editar tarefas existentes
 
-(Em desenvolvimento): funcionalidade de edição de tarefas.
+Excluir tarefas
 
-- Linguagens Utilizadas
-PHP – linguagem de programação backend responsável pelo processamento dos dados.
+Marcar tarefas como concluídas
 
-MySQL – banco de dados relacional utilizado para armazenamento das tarefas.
+Layout adaptável para diferentes tamanhos de tela (responsivo)
 
-Bootstrap  – framework CSS para construção da interface responsiva.
+🧩 Estrutura do Banco de Dados
+Antes de rodar o projeto, é necessário criar o banco de dados todo_list e a tabela tasks. Para isso, utilize o seguinte script SQL no phpMyAdmin ou outro gerenciador MySQL:
 
-Bootstrap Icons – biblioteca de ícones para enriquecer a interface.
+sql
+Copiar
+Editar
+DROP DATABASE IF EXISTS todo_list;
+CREATE DATABASE todo_list;
+USE todo_list;
 
-- Estrutura de Diretórios
-<pre>
-TO_DO_LIST_MAIN
-├── assets/
-│   └── style.css                  # Arquivo de estilo customizado
-|   |__ seta.pgn                   # Imagem seta
-├── metodos/
-│   ├── conexao.php                # Script de conexão com o banco de dados
-│   ├── insertTask.php             # Script para inserção de nova tarefa
-│   ├── deleteTask.php             # Script para exclusão de tarefa
-│   ├── completeTask.php           # Script para marcar tarefa como concluída
-├── todoList.php       
-</pre>
-🔧 Requisitos
-Para executar o projeto localmente, é necessário ter os seguintes componentes instalados:
+CREATE TABLE tasks (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(100),
+    description VARCHAR(200),
+    status ENUM('pendente', 'em_progresso', 'completado') DEFAULT 'pendente'
+);
+Importante: certifique-se de que seu arquivo PHP está conectado corretamente ao banco (verifique as credenciais no arquivo de conexão).
 
-Servidor Web (ex: Apache via XAMPP, WAMP, Laragon ou similar)
 
-PHP 7.4+
+🚀 Como Rodar o Projeto Localmente
+Pré-requisitos:
 
-MySQL 5.7+
+Ter o XAMPP instalado (ou outro servidor local que suporte PHP e MySQL)
 
-Navegador (ex: Chrome, Firefox)
+Ter o Git instalado para clonar o projeto
 
--Como Executar o Projeto
-Clone ou baixe este repositório:
+Clonar o repositório:
+No terminal: git clone https://github.com/fabisussuarana/to-do-list.git
 
-bash
-Copiar -> git clone https://github.com/seu-usuario/nome-do-repositorio.git
+Copie ou mova a pasta clonada para: C:/xampp/htdocs/to-do-list
 
-Configure o banco de dados:
+Criar o banco de dados:
+Acesse o phpMyAdmin: http://localhost/phpmyadmin
 
-Crie um banco de dados no MySQL com o nome de sua escolha.
+Execute o script SQL da seção anterior para criar o banco todo_list e a tabela tasks
 
-Execute o script TO_DO_LIST_MAIN
+Executar o servidor:
 
--Abra o arquivo metodos/conexao.php e substitua os dados de conexão de acordo com as configurações do seu ambiente local:
-$conn = new mysqli('localhost', 'usuario', 'senha', 'nome_do_banco');
+No XAMPP, inicie o Apache e o MySQL
 
-localhost: endereço do servidor MySQL (padrão: localhost)
+Acesse no navegador: http://localhost/to-do-list/
 
-usuario: nome de usuário do MySQL (padrão: root)
+👥 Equipe de Desenvolvimento
+O projeto foi desenvolvido por quatro integrantes, cada um contribuindo com:
 
-senha: senha do MySQL (padrão em muitos ambientes locais é vazia)
+Estrutura semântica em HTML
 
-nome_do_banco: o nome do banco de dados criado no passo anterior
+Estilização com CSS e Bootstrap
 
--Coloque os arquivos no servidor local
-Copie todos os arquivos do projeto para o diretório raiz do seu servidor local:
+Programação em PHP e integração com MySQL
 
-Em servidores como o XAMPP, esse diretório costuma ser: C:/xampp/htdocs/
+Organização do Git, resolução de conflitos e testes funcionais
 
--Acesse a aplicação via navegador
-Com o servidor ativo (Apache/MySQL), abra o navegador e acesse a URL correspondente:
-http://localhost/lista-tarefas/
 
+📎 Repositório: https://github.com/fabisussuarana/to-do-list 

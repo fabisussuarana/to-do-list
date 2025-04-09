@@ -1,6 +1,6 @@
 :root {
     --cor-primaria: #052659;
-    --cor-segundaria: #021024;
+    --cor-segundaria: #041f45;
     --verde: #198754;
     --verde-escuro: #105937;
 }
@@ -23,6 +23,7 @@ input, select{
 .btn-search:hover, 
 .btn-mostra-filtro:hover{
     background-color: var(--cor-segundaria);
+    color: #dddddd;
 }
 .titulo-search{
     color: var(--cor-primaria);
@@ -39,4 +40,10 @@ input, select{
 #listaTarefas{
     overflow-y: scroll;
     height: 250px;
+}
+
+/* Edição */
+.text-edit{
+    color: var(--cor-primaria);
+    font-weight: 500;
 }

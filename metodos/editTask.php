@@ -33,26 +33,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="../assets/style.css">
 </head>
-<body class="d-flex justify-content-center align-items-center" style="min-height: 100vh; background-color: #121212;">
+<body class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
   <div class="container my-5">
     <h1 class="text-center text-light mb-4">Editar Tarefa</h1>
     <div class="card shadow-lg mx-auto" style="max-width: 700px;">
-      <div class="card-body p-4 text-white rounded" style="background-color: #1f1f1f;">
+      <div class="card-body p-4 text-white rounded">
         <form method="POST" action="updateTask.php">
           <input type="hidden" name="id" value="<?= $task['id'] ?>">
 
           <div class="mb-3">
-            <label for="titulo" class="form-label">Título</label>
+            <label for="titulo" class="form-label text-edit">Título</label>
             <input type="text" class="form-control" id="titulo" name="titulo" value="<?= $task['title'] ?>" required>
           </div>
 
           <div class="mb-3">
-            <label for="descricao" class="form-label">Descrição</label>
+            <label for="descricao" class="form-label text-edit">Descrição</label>
             <input type="text" class="form-control" id="descricao" name="descricao" value="<?= $task['description'] ?>" required>
           </div>
 
           <div class="mb-3">
-            <label for="status" class="form-label">Status</label>
+            <label for="status" class="form-label text-edit">Status</label>
             <select class="form-select" id="status" name="status">
               <option value="pendente" <?= $task['status'] === 'pendente' ? 'selected' : '' ?>>Pendente</option>
               <option value="em_andamento" <?= $task['status'] === 'em_andamento' ? 'selected' : '' ?>>Em andamento</option>
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
             <a href="../todoList.php" class="btn btn-secondary">
               <i class="bi bi-arrow-left"></i> Cancelar
             </a>
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-success text-light">
               <i class="bi bi-save"></i> Salvar Alterações
             </button>
           </div>
